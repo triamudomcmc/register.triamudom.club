@@ -1,0 +1,29 @@
+{
+  "name": "clubreg",
+  "author": {
+    "email": "markkung08@gmail.com",
+    "name": "Possawat Suksai",
+    "url": "https://iammark.me"
+  },
+  "license": "ISC",
+  "scripts": {
+    "dev": "next",
+    "start": "next start",
+    "build": "next build"
+  },
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "antd": "^3.20.1",
+    "babel-plugin-import": "^1.12.0",
+    "next": "^9.0.0",
+    "null-loader": "^3.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.12",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "typescript": "^3.5.2"
+  }
+}

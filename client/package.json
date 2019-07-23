@@ -7,8 +7,8 @@
   },
   "license": "ISC",
   "scripts": {
-    "dev": "next",
-    "start": "next start",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
     "build": "next build"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "@types/node": "^12.0.12",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
+    "nodemon": "^1.19.1",
     "typescript": "^3.5.2"
   }
 }

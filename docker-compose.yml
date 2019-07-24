@@ -1,5 +1,16 @@
 version: '3'
 services:
+  session:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    networks:
+      - backend
+    expose:
+      - 6379
+    restart: on-failure
+
   api:
     build: ./server
     ports:
@@ -15,3 +26,6 @@ services:
     environment: 
       - NODE_ENV=production
     restart: always
+
+volumes:
+  redis:

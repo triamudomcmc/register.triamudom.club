@@ -32,6 +32,9 @@ services:
       - "1323:1323"
     networks:
       - backend
+    depends_on:
+      - session
+      - database
     restart: always
 
   web:

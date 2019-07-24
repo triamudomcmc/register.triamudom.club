@@ -11,6 +11,21 @@ services:
       - 6379
     restart: on-failure
 
+  database:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE:
+      MYSQL_USER:
+      MYSQL_PASSWORD:
+    ports:
+      - "3307:3306"
+    networks:
+      - backend
+    volumes:
+      - mariadb:/var/lib/mysql
+    restart: on-failure
+
   api:
     build: ./server
     ports:
@@ -34,3 +49,4 @@ networks:
 
 volumes:
   redis:
+  mariadb:

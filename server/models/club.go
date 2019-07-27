@@ -1,12 +1,10 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
 	"time"
 )
 
 type Club struct {
-	gorm.Model
 	ClubID string `gorm:"UNIQUE;NOT NULL;PRIMARY_KEY"`
 	Name string
 	EnglishName string
@@ -14,6 +12,7 @@ type Club struct {
 	IsActive bool
 	Description string
 	MaxMember uint16
+	Member []User `gorm:"ForeignKey:ClubID"`
 	PresidentID uint16
 	President User
 	AuditionLocation string

@@ -1,21 +1,38 @@
 package main
+
 import (
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
-	"net/http"
+	"context"
+	"fmt"
+	"github.com/iammarkps/clubreg/server/app"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 )
+
+
 func main() {
-	e := echo.New()
+	e, db := app.New()
 
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-	e.Use(middleware.CORS())
-	e.Use(middleware.Gzip())
-	e.Use(middleware.Secure())
+	go func() {
+		if err := e.Start(":1323"); err != nil {
+			e.Logger.Info("🔥🔥🔥")
+		}
+	}()
 
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
-
-	e.Logger.Fatal(e.Start(":1323"))
+	quit := make(chan os.Signal)
+	signal.Notify(quit, os.Interrupt, syscall.SIGTERM)
+	<-quit
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	if err := e.Shutdown(ctx); err != nil {
+		e.Logger.Fatal(err)
+	} else {
+		fmt.Println("HTTP server gracefully shutdown at", time.Now())
+	}
+	if err := db.Close(); err != nil {
+		e.Logger.Fatal(err)
+	} else {
+		fmt.Println("Database connection gracefully stop at", time.Now())
+	}
 }

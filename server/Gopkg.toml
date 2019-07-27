@@ -32,3 +32,11 @@
 [[constraint]]
   name = "github.com/labstack/echo"
   version = "3.1.0"
+
+[[constraint]]
+  name = "github.com/gomodule/redigo"
+  version = "2.0.0"
+
+[[constraint]]
+  name = "github.com/labstack/echo-contrib"
+  version = "0.5.2"

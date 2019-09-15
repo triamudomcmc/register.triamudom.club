@@ -9,7 +9,7 @@ services:
       - backend
     expose:
       - 6379
-    restart: on-failure
+    restart: always
 
   database:
     image: mariadb
@@ -24,7 +24,7 @@ services:
       - backend
     volumes:
       - mariadb:/var/lib/mysql
-    restart: on-failure
+    restart: always
 
   api:
     build: ./server
@@ -38,7 +38,7 @@ services:
     restart: always
 
   web:
-    build: ./client
+    build: client
     ports: 
       - "3000:3000"
     depends_on: 

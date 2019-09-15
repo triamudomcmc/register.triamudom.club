@@ -15,6 +15,10 @@ type LoginReqBody struct {
 	Password string `json:"password"`
 }
 
+type LoginResBody struct {
+	StudentID uint16 `json:"student_id"`
+}
+
 func (handler *Handler) Login(c echo.Context) error {
 	u := new(LoginReqBody)
 	if err := c.Bind(&u); err != nil {
@@ -49,7 +53,7 @@ func (handler *Handler) Login(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, "Cannot logged you in")
 	}
 
-	return c.JSON(http.StatusOK, "Logged in")
+	return c.JSON(http.StatusOK, &LoginResBody{StudentID: User.StudentID})
 }
 
 func (handler *Handler) Logout(c echo.Context) error {

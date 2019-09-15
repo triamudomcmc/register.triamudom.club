@@ -2,14 +2,13 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/iammarkps/clubreg/server/app"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 )
-
 
 func main() {
 	e, db := app.New()
@@ -28,11 +27,11 @@ func main() {
 	if err := e.Shutdown(ctx); err != nil {
 		e.Logger.Fatal(err)
 	} else {
-		fmt.Println("HTTP server gracefully shutdown at", time.Now())
+		log.Print("HTTP server gracefully shutdown")
 	}
 	if err := db.Close(); err != nil {
 		e.Logger.Fatal(err)
 	} else {
-		fmt.Println("Database connection gracefully stop at", time.Now())
+		log.Print("Database connection gracefully stop")
 	}
 }

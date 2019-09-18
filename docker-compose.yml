@@ -38,7 +38,7 @@ services:
     restart: always
 
   web:
-    build: client
+    build: ./client
     ports: 
       - "3000:3000"
     depends_on: 

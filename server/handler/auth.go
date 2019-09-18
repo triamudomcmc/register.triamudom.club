@@ -15,11 +15,11 @@ type LoginReqBody struct {
 	Password string `json:"password"`
 }
 
-type LoginResBody struct {
-	StudentID uint16 `json:"student_id"`
-}
-
 func (handler *Handler) Login(c echo.Context) error {
+	type LoginResBody struct {
+		StudentID uint16 `json:"student_id"`
+	}
+
 	u := new(LoginReqBody)
 	if err := c.Bind(&u); err != nil {
 		return err

@@ -13,6 +13,7 @@ type User struct {
 	Title string `gorm:"NOT NULL"`
 	FirstName string `gorm:"NOT_NULL"`
 	LastName string `gorm:"NOT NULL"`
+	AccessLevel uint8 `gorm:"NOT NULL;default:1"`
 	ClubID string
 	Reason string
 	OldClubID string

@@ -1,11 +1,13 @@
 package handler
 
 import (
-	"github.com/labstack/echo/v4"
 	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
-func (handler *Handler) HealthCheck (e echo.Context) error {
+//HealthCheck handles status check for cluster ping
+func (handler *Handler) HealthCheck(e echo.Context) error {
 	err := handler.DB.DB().Ping()
 	if err != nil {
 		return e.NoContent(http.StatusServiceUnavailable)

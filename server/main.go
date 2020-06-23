@@ -2,12 +2,13 @@ package main
 
 import (
 	"context"
-	"github.com/iammarkps/clubreg/server/app"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/iammarkps/clubreg/server/app"
 )
 
 func main() {
@@ -24,14 +25,16 @@ func main() {
 	<-quit
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
+
 	if err := e.Shutdown(ctx); err != nil {
 		e.Logger.Fatal(err)
 	} else {
 		log.Print("HTTP server gracefully shutdown")
 	}
+
 	if err := db.Close(); err != nil {
 		e.Logger.Fatal(err)
 	} else {
-		log.Print("Database connection gracefully stop")
+		log.Print("Database connection terminated")
 	}
 }

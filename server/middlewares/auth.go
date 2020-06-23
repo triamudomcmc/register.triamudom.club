@@ -10,17 +10,24 @@ import (
 Access Control
 Level 1 - Default
 Level 2 - Club's President
-Level 3 - TUCMC
-Level 4 - Head of Dept.
-Level 5 - System Admin Aka. IT TUCMC
+Level 3 - Superuser
  */
 func (middleware *Middleware) Auth(level uint8) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			sess, _ := session.Get("SESSION", c)
 			User := &models.User{}
-			middleware.DB.Where(&models.User{StudentID: sess.Values["userID"].(uint16)}).First(User)
+			userID := sess.Values["userID"].(uint16)
+			middleware.DB.Where(&models.User{StudentID: userID}).First(User)
 			if User.AccessLevel >= level {
+				if User.AccessLevel == 2 {
+					Club := &models.Club{}
+					middleware.DB.Where(&models.Club{PresidentID: userID}).First(Club)
+					if Club == (&models.Club{}) {
+						return echo.ErrUnauthorized
+					}
+					c.Set("Club", Club)
+				}
 				c.Set("User", User)
 				return next(c)
 			}

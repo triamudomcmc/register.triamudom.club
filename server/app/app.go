@@ -1,11 +1,14 @@
 package app
 
 import (
+	//Redis
 	_ "github.com/gomodule/redigo/redis"
 	"github.com/gorilla/sessions"
 	"github.com/iammarkps/clubreg/server/handler"
 	"github.com/iammarkps/clubreg/server/models"
 	"github.com/jinzhu/gorm"
+
+	//MariaDB dialects
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
@@ -17,6 +20,7 @@ import (
 	"os"
 )
 
+//New return new echo and gorm object
 func New() (*echo.Echo, *gorm.DB) {
 	e := echo.New()
 
@@ -30,6 +34,8 @@ func New() (*echo.Echo, *gorm.DB) {
 	}
 	defer db.Close()
 
+	db.BlockGlobalUpdate(true)
+	db.DB().SetMaxIdleConns(100)
 	db.AutoMigrate(&models.Club{}, &models.User{}, &models.Audition{}, &models.Settings{})
 
 	e.Use(middleware.Logger())
@@ -63,4 +69,3 @@ func newRedisStore() sessions.Store {
 	}
 	return store
 }
-

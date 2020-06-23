@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   session:
     image: redis
@@ -35,16 +35,6 @@ services:
     depends_on:
       - session
       - database
-    restart: always
-
-  web:
-    build: ./client
-    ports: 
-      - "3000:3000"
-    depends_on: 
-      - api
-    environment: 
-      - NODE_ENV=production
     restart: always
 
 networks:

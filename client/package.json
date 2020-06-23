@@ -1,32 +1,23 @@
 {
-  "name": "clubreg",
-  "author": {
-    "email": "markkung08@gmail.com",
-    "name": "Possawat Suksai",
-    "url": "https://iammark.me"
-  },
-  "license": "ISC",
+  "name": "tu-clubreg-client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "iammarkps",
+  "license": "MIT",
+  "private": true,
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
-    "build": "next build"
+    "dev": "next"
   },
   "dependencies": {
-    "@zeit/next-css": "^1.0.1",
-    "antd": "^3.23.3",
-    "babel-plugin-import": "^1.12.1",
-    "koa": "^2.8.1",
-    "koa-router": "^7.4.0",
-    "next": "^9.0.6",
-    "null-loader": "^3.0.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@types/node": "^12.7.5",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
-    "nodemon": "^1.19.2",
-    "typescript": "^3.6.3"
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.38",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^1.4.6",
+    "typescript": "^3.9.5"
   }
 }

@@ -24,7 +24,7 @@ func (middleware *Middleware) Auth(level uint8) echo.MiddlewareFunc {
 			if User.AccessLevel >= level {
 				if User.AccessLevel == 2 {
 					Club := &models.Club{}
-					middleware.DB.Where(&models.Club{President: *User}).First(Club)
+					middleware.DB.Where(&models.Club{PresidentID: User.StudentID}).First(Club)
 					if Club == (&models.Club{}) {
 						return echo.ErrUnauthorized
 					}

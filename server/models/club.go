@@ -13,9 +13,9 @@ type Club struct {
 	IsActive            bool
 	Description         string
 	MaxMember           uint16
-	Member              []User `gorm:"ForeignKey:ClubID"`
+	Member              []User `gorm:"foreignkey:ClubID"`
 	PresidentID         uint16
-	President           User
+	President           User `gorm:"foreignkey:PresidentID"`
 	AuditionLocation    string
 	AuditionTime        string
 	AuditionInstruction string

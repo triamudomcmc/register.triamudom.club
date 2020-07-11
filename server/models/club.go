@@ -14,7 +14,7 @@ type Club struct {
 	Description         string
 	MaxMember           uint16
 	Member              []User `gorm:"foreignkey:ClubID"`
-	PresidentID         uint16
+	PresidentID         string
 	President           User `gorm:"foreignkey:PresidentID"`
 	AuditionLocation    string
 	AuditionTime        string

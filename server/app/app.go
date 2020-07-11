@@ -20,7 +20,6 @@ import (
 
 	"log"
 	"net/http"
-	"os"
 )
 
 //New return new echo and gorm object
@@ -44,7 +43,11 @@ func New() (*echo.Echo, *gorm.DB) {
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.Use(middleware.CORS())
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowCredentials: true,
+		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAuthorization},
+		AllowOrigins:     []string{"http://localhost:3000"},
+	}))
 	e.Use(middleware.Gzip())
 	e.Use(middleware.Secure())
 	e.Use(session.Middleware(newRedisStore()))
@@ -59,12 +62,13 @@ func New() (*echo.Echo, *gorm.DB) {
 	e.POST("/login", h.Login)
 	e.GET("/logout", h.Logout)
 	e.GET("/health", h.HealthCheck)
+	e.GET("/user", h.User)
 
 	return e, db
 }
 
 func newRedisStore() sessions.Store {
-	store, err := redistore.NewRediStore(10, "tcp", ":6379", "", []byte(os.Getenv("SESSION_KEY")))
+	store, err := redistore.NewRediStore(10, "tcp", ":6379", "", []byte("secret"))
 	log.Printf("Connecting to redis...")
 	if err != nil {
 		log.Fatal(err)

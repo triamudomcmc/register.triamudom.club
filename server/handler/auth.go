@@ -12,15 +12,14 @@ import (
 )
 
 type loginReqBody struct {
-	StudentID uint16 `json:"student_id"`
+	StudentID string `json:"student_id"`
 	Password  string `json:"password"`
 }
 
 //Login handles login req
 func (handler *Handler) Login(c echo.Context) error {
 	type loginResBody struct {
-		StudentID uint16 `json:"student_id"`
-		ClubID    string `json:"club_id"`
+		StudentID string `json:"student_id"`
 	}
 
 	u := new(loginReqBody)
@@ -34,28 +33,28 @@ func (handler *Handler) Login(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, "Unauthorized")
 	}
 
-	sess, _ := session.Get("SESSION", c)
+	sess, _ := session.Get("Session", c)
 	sess.Options = &sessions.Options{
-		Path:     "/",
-		MaxAge:   86400 * 7,
-		HttpOnly: true,
-		Secure:   true,
+		Path:   "/",
+		MaxAge: 86400 * 7,
+		// HttpOnly: true,
+		// Secure:   true,
 	}
 
-	sess.Values["username"] = User.Title + User.FirstName + "  " + User.LastName
-	sess.Values["userID"] = User.StudentID
+	sess.Values["user"] = User.StudentID
 	sess.Values["timestamp"] = time.Now()
+
 	err := sess.Save(c.Request(), c.Response())
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, "Cannot logged you in")
 	}
 
-	return c.JSON(http.StatusOK, &loginResBody{StudentID: User.StudentID, ClubID: User.ClubID})
+	return c.JSON(http.StatusOK, &loginResBody{StudentID: User.StudentID})
 }
 
 //Logout handles logout
 func (handler *Handler) Logout(c echo.Context) error {
-	sess, _ := session.Get("SESSION", c)
+	sess, _ := session.Get("Session", c)
 	sess.Options.MaxAge = -1
 
 	err := sess.Save(c.Request(), c.Response())

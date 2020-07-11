@@ -6,8 +6,8 @@ import (
 
 //User data model
 type User struct {
-	StudentID   uint16 `gorm:"UNIQUE;NOT NULL;PRIMARY_KEY"`
-	Password    string
+	StudentID   string `gorm:"UNIQUE;NOT NULL;PRIMARY_KEY"`
+	Password    string `json:"-"`
 	Level       uint8
 	Room        uint16
 	Number      uint8
@@ -18,6 +18,6 @@ type User struct {
 	ClubID      string
 	Reason      string
 	OldClubID   string
-	UpdatedAt   time.Time
-	CreatedAt   time.Time
+	UpdatedAt   time.Time `json:"-"`
+	CreatedAt   time.Time `json:"-"`
 }

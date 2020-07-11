@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/labstack/echo-contrib/session"
@@ -10,15 +12,16 @@ import (
 )
 
 //User handle returning user info to front-end
-func (handler *Handler) User(e echo.Context) error {
-	sess, _ := session.Get("SESSION", e)
+func (handler *Handler) User(c echo.Context) error {
+	sess, _ := session.Get("Session", c)
 	User := &models.User{}
-	userID := sess.Values["userID"].(uint16)
-	handler.DB.Where(&models.User{StudentID: userID}).First(User)
+	ID := fmt.Sprintf("%v", sess.Values["user"])
 
-	if User == (&models.User{}) {
-		return e.JSON(http.StatusUnauthorized, "Unauthorized")
+	log.Print(sess.Values)
+
+	if handler.DB.Where(&models.User{StudentID: ID}).First(User).RecordNotFound() {
+		return c.JSON(http.StatusUnauthorized, "Unauthorized")
 	}
 
-	return e.JSON(http.StatusOK, User)
+	return c.JSON(http.StatusOK, User)
 }

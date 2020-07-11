@@ -18,7 +18,7 @@ func (middleware *Middleware) Auth(level uint8) echo.MiddlewareFunc {
 		return func(c echo.Context) error {
 			sess, _ := session.Get("SESSION", c)
 			User := &models.User{}
-			userID := sess.Values["userID"].(uint16)
+			userID := sess.Values["userID"].(string)
 			middleware.DB.Where(&models.User{StudentID: userID}).First(User)
 
 			if User.AccessLevel >= level {

@@ -33,7 +33,9 @@ export default () => {
       <Flex align="center" justify="center" flexGrow={1}>
         <Box py={[8, 0]} px={[4, 0]}>
           <Box mx="auto" textAlign="center">
-            <Heading fontSize={['2xl', '3xl']}>โรงเรียนเตรียมอุดมศึกษา</Heading>
+            <Heading fontSize={['2xl', '3xl']} color="white">
+              โรงเรียนเตรียมอุดมศึกษา
+            </Heading>
           </Box>
           <Card>
             <Heading size="md">เข้าสู่ระบบทะเบียนชมรม</Heading>

@@ -18,18 +18,14 @@ type loginReqBody struct {
 
 //Login handles login req
 func (handler *Handler) Login(c echo.Context) error {
-	type loginResBody struct {
-		StudentID string `json:"student_id"`
-	}
-
 	u := new(loginReqBody)
 	if err := c.Bind(&u); err != nil {
 		return err
 	}
-	User := &models.User{}
-	handler.DB.Where(&models.User{StudentID: u.StudentID}).First(User)
 
-	if User == (&models.User{}) || !utils.CheckPasswordHash(u.Password, User.Password) {
+	User := &models.User{}
+
+	if handler.DB.Where(&models.User{StudentID: u.StudentID}).First(User).RecordNotFound() || !utils.CheckPasswordHash(u.Password, User.Password) {
 		return c.JSON(http.StatusUnauthorized, "Unauthorized")
 	}
 
@@ -49,7 +45,7 @@ func (handler *Handler) Login(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, "Cannot logged you in")
 	}
 
-	return c.JSON(http.StatusOK, &loginResBody{StudentID: User.StudentID})
+	return c.JSON(http.StatusOK, User)
 }
 
 //Logout handles logout

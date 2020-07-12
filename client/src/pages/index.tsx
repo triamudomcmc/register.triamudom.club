@@ -43,6 +43,7 @@ export default () => {
               <Formik
                 initialValues={{ student_id: '', password: '' }}
                 onSubmit={async (values, actions) => {
+                  let data: any
                   actions.setSubmitting(true)
 
                   try {
@@ -55,14 +56,10 @@ export default () => {
                       credentials: 'include',
                     })
 
-                    const data = await res.json()
+                    data = await res.json()
+                  } catch (_) {}
 
-                    console.log(data)
-                  } catch (_) {
-                    // setFetchError('An error occured')
-                  }
-
-                  mutate()
+                  mutate(data)
                   actions.setSubmitting(false)
                 }}
               >

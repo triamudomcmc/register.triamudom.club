@@ -1,23 +1,10 @@
 import React, { useEffect } from 'react'
-import {
-  Box,
-  Flex,
-  Heading,
-  FormControl,
-  FormLabel,
-  InputGroup,
-  InputLeftElement,
-  Icon,
-  Input,
-  FormErrorMessage,
-  Button,
-} from '@chakra-ui/core'
+
 import { Formik, Field } from 'formik'
 import Router from 'next/router'
 
 import { Card } from 'components/Card'
 import useUser from 'components/useUser'
-import { PageLayout } from 'components/Layout'
 
 export default () => {
   const { user, mutate } = useUser()
@@ -29,102 +16,82 @@ export default () => {
   }, [user])
 
   return (
-    <PageLayout>
-      <Flex align="center" justify="center" flexGrow={1}>
-        <Box py={[8, 0]} px={[4, 0]}>
-          <Box mx="auto" textAlign="center">
-            <Heading fontSize={['2xl', '3xl']} color="white">
-              โรงเรียนเตรียมอุดมศึกษา
-            </Heading>
-          </Box>
-          <Card>
-            <Heading size="md">เข้าสู่ระบบทะเบียนชมรม</Heading>
-            <Box mt={2} fontFamily="heading">
-              <Formik
-                initialValues={{ student_id: '', password: '' }}
-                onSubmit={async (values, actions) => {
-                  let data: any
-                  actions.setSubmitting(true)
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="max-w-md font-display">
+        <div>
+          <h1 className="text-2xl font-bold text-center mb-4">
+            โรงเรียนเตรียมอุดมศึกษา
+          </h1>
+        </div>
+        <Card>
+          <h1 className="text-lg">เข้าสู่ระบบทะเบียนชมรม</h1>
+          <div>
+            <Formik
+              initialValues={{ student_id: '', password: '' }}
+              onSubmit={async (values, actions) => {
+                let data: any
+                actions.setSubmitting(true)
 
-                  try {
-                    const res = await fetch(`http://localhost:1323/login`, {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify(values),
-                      credentials: 'include',
-                    })
+                try {
+                  const res = await fetch(`http://localhost:1323/login`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(values),
+                    credentials: 'include',
+                  })
 
-                    data = await res.json()
-                  } catch (_) {}
+                  data = await res.json()
+                } catch (_) {}
 
-                  mutate(data)
-                  actions.setSubmitting(false)
-                }}
-              >
-                {(props) => (
-                  <form onSubmit={props.handleSubmit}>
-                    <Field name="student_id">
-                      {({ field, form }) => (
-                        <FormControl
-                          isInvalid={
-                            form.errors.student_id && form.touched.student_id
-                          }
-                        >
-                          <FormLabel htmlFor="student_id">
-                            เลขประจำตัวนักเรียน
-                          </FormLabel>
-                          <InputGroup>
-                            <InputLeftElement
-                              children={<Icon name="edit" color="gray.300" />}
-                            />
-                            <Input {...field} id="student_id" />
-                          </InputGroup>
-                          <FormErrorMessage>
-                            {form.errors.student_id}
-                          </FormErrorMessage>
-                        </FormControl>
-                      )}
-                    </Field>
-                    <Field name="password">
-                      {({ field, form }) => (
-                        <FormControl
-                          isInvalid={
-                            form.errors.password && form.touched.password
-                          }
-                          mt={4}
-                        >
-                          <FormLabel htmlFor="password">รหัสผ่าน</FormLabel>
-                          <InputGroup>
-                            <InputLeftElement
-                              children={<Icon name="edit" color="gray.300" />}
-                            />
-                            <Input {...field} id="password" type="password" />
-                          </InputGroup>
-                          <FormErrorMessage>
-                            {form.errors.password}
-                          </FormErrorMessage>
-                        </FormControl>
-                      )}
-                    </Field>
-                    <Button
-                      mt={4}
-                      variantColor="teal"
-                      isLoading={props.isSubmitting}
-                      type="submit"
-                      width="100%"
-                      fontFamily="heading"
-                    >
-                      เข้าสู่ระบบ
-                    </Button>
-                  </form>
-                )}
-              </Formik>
-            </Box>
-          </Card>
-        </Box>
-      </Flex>
-    </PageLayout>
+                mutate(data)
+                actions.setSubmitting(false)
+              }}
+            >
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+              }) => (
+                <form onSubmit={handleSubmit} className="mt-6">
+                  <input
+                    type="text"
+                    name="student_id"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.student_id}
+                    className="bg-white focus:outline-none focus:shadow-inner border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+                    placeholder="เลขประจำตัวนักเรียน"
+                  />
+                  {errors.student_id && touched.student_id && errors.student_id}
+                  <input
+                    type="password"
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                    className="bg-white focus:outline-none focus:shadow-inner border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal mt-4"
+                    placeholder="รหัสผ่าน"
+                  />
+                  {errors.password && touched.password && errors.password}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="mt-4 focus:outline-none focus:shadow-outline font-bold bg-pink-400 text-white py-2 px-4 rounded-full"
+                  >
+                    เข้าสู่ระบบ
+                  </button>
+                </form>
+              )}
+            </Formik>
+          </div>
+        </Card>
+      </div>
+    </div>
   )
 }

@@ -10,6 +10,7 @@ type Audition struct {
 	Club      Club
 	User      User
 	Status    string
+	Priority  uint16
 	UpdatedAt time.Time
 	CreatedAt time.Time
 }

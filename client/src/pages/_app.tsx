@@ -2,10 +2,10 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import { SWRConfig } from 'swr'
 
-import 'styles/index.css'
+import 'styles/tailwind.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <React.Fragment>
+  <div className="antialiased">
     <SWRConfig
       value={{
         fetcher: (input: RequestInfo) =>
@@ -14,7 +14,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
     >
       <Component {...pageProps} />
     </SWRConfig>
-  </React.Fragment>
+  </div>
 )
 
 export default MyApp

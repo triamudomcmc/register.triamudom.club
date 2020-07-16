@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { Formik, Field } from 'formik'
+import { Formik } from 'formik'
 import Router from 'next/router'
 
 import { Card } from 'components/Card'
@@ -17,11 +17,9 @@ export default () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <div className="max-w-md font-display">
+      <div className="max-w-lg font-display">
         <div>
-          <h1 className="text-2xl font-bold text-center mb-4">
-            โรงเรียนเตรียมอุดมศึกษา
-          </h1>
+          <img src="/assets/logo/logo.png" className="w-64 mx-auto"></img>
         </div>
         <Card>
           <h1 className="text-lg">เข้าสู่ระบบทะเบียนชมรม</h1>
@@ -58,7 +56,7 @@ export default () => {
                 handleSubmit,
                 isSubmitting,
               }) => (
-                <form onSubmit={handleSubmit} className="mt-6">
+                <form onSubmit={handleSubmit} className="mt-6 w-64">
                   <input
                     type="text"
                     name="student_id"

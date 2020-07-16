@@ -22,7 +22,7 @@ export default () => {
           <img src="/assets/logo/logo.png" className="w-64 mx-auto"></img>
         </div>
         <Card>
-          <h1 className="text-lg">เข้าสู่ระบบทะเบียนชมรม</h1>
+          <h1 className="text-lg font-bold">เข้าสู่ระบบทะเบียนชมรม</h1>
           <div>
             <Formik
               initialValues={{ student_id: '', password: '' }}

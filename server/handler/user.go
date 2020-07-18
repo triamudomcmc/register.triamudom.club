@@ -2,7 +2,6 @@ package handler
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/labstack/echo-contrib/session"
@@ -16,8 +15,6 @@ func (handler *Handler) User(c echo.Context) error {
 	sess, _ := session.Get("Session", c)
 	User := &models.User{}
 	ID := fmt.Sprintf("%v", sess.Values["user"])
-
-	log.Print(sess.Values)
 
 	if handler.DB.Where(&models.User{StudentID: ID}).First(User).RecordNotFound() {
 		return c.JSON(http.StatusUnauthorized, "Unauthorized")

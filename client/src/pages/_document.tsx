@@ -23,6 +23,7 @@ export default class Document extends NextDocument {
             type="font/woff2"
             crossOrigin="true"
           />
+          <link rel="preload" href="/assets/logo/logo.png" as="image" />
         </Head>
         <body>
           <Main />

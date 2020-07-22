@@ -60,6 +60,7 @@ func New() (*echo.Echo, *gorm.DB) {
 		return c.JSON(http.StatusOK, "😼Triam Udom Suksa School's club registration API is running!")
 	})
 	e.POST("/login", h.Login)
+	e.POST("/register", h.Register)
 	e.GET("/logout", h.Logout)
 	e.GET("/health", h.HealthCheck)
 	e.GET("/user", h.User)

@@ -62,39 +62,59 @@ export default () => {
           handleSubmit,
           isSubmitting,
         }) => (
-          <form onSubmit={handleSubmit} className="mt-6 w-64">
-            <input
-              type="text"
-              name="student_id"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.student_id}
-              className="form-input mt-1 block w-full rounded-lg"
-              placeholder="เลขประจำตัวนักเรียน"
-              aria-required
-            />
-            <p className="my-2 text-sm text-red-500">
-              {errors.student_id && touched.student_id && errors.student_id}
-            </p>
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-              className="form-input mt-1 block w-full rounded-lg"
-              placeholder="รหัสผ่าน"
-              aria-required
-            />
-            <p className="my-2 text-sm text-red-500">
-              {errors.password && touched.password && errors.password}
-            </p>
+          <form onSubmit={handleSubmit} className="mt-4 w-64">
+            <div>
+              <label
+                htmlFor="student_id"
+                className="block text-sm font-medium leading-5 text-gray-700"
+              >
+                เลขประจำตัวนักเรียน
+              </label>
+              <div className="mt-1 rounded-md shadow-sm">
+                <input
+                  type="text"
+                  name="student_id"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.student_id}
+                  required
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                />
+              </div>
+              <p className="my-2 text-sm text-red-500">
+                {errors.student_id && touched.student_id && errors.student_id}
+              </p>
+            </div>
+
+            <div className="mt-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-5 text-gray-700"
+              >
+                รหัสผ่าน
+              </label>
+              <div className="mt-1 rounded-md shadow-sm">
+                <input
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                  required
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                />
+              </div>
+              <p className="my-2 text-sm text-red-500">
+                {errors.password && touched.password && errors.password}
+              </p>
+            </div>
+
             <p className="mt-2 text-sm text-red-500">{error}</p>
             <div className="mt-6 flex flex-row justify-between items-baseline">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="focus:outline-none focus:shadow-outline-pink font-bold bg-pink-400 hover:bg-pink-500 transition duration-500 text-white py-2 px-4 rounded-full"
+                className="focus:outline-none focus:shadow-outline-pink font-bold bg-pink-500 hover:bg-pink-400 transition duration-500 text-white py-2 px-4 rounded-full"
               >
                 เข้าสู่ระบบ
               </button>

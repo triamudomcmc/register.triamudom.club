@@ -94,7 +94,7 @@ export default () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="focus:outline-none focus:shadow-outline font-bold bg-pink-400 hover:bg-pink-500 transition duration-500 text-white py-2 px-4 rounded-full"
+                className="focus:outline-none focus:shadow-outline-pink font-bold bg-pink-400 hover:bg-pink-500 transition duration-500 text-white py-2 px-4 rounded-full"
               >
                 เข้าสู่ระบบ
               </button>

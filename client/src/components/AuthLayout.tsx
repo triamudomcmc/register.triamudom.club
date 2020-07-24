@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from './Card'
 
 export const AuthLayout = ({ title, children }) => (
-  <div className="min-h-screen flex flex-col items-center justify-center">
+  <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
     <div className="max-w-lg font-display">
       <div>
         <img src="/assets/logo/logo.png" className="w-64 mx-auto"></img>

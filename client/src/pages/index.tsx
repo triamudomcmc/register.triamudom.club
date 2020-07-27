@@ -44,7 +44,7 @@ export default () => {
 
             data = await res.json()
 
-            if (data === 'Unauthorized') {
+            if (data.errors.body === 'Unauthorized') {
               setError('ชื่อผู้ใช้กับรหัสผ่านไม่ตรงกัน')
             }
           } catch (_) {}
@@ -62,7 +62,7 @@ export default () => {
           handleSubmit,
           isSubmitting,
         }) => (
-          <form onSubmit={handleSubmit} className="mt-4 w-64">
+          <form onSubmit={handleSubmit} className="mt-4">
             <div>
               <label
                 htmlFor="student_id"

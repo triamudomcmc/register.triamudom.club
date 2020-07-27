@@ -38,7 +38,7 @@ func (handler *Handler) Login(c echo.Context) error {
 	User := &models.User{}
 
 	if handler.DB.Where(&models.User{StudentID: u.StudentID}).First(User).RecordNotFound() || !utils.CheckPasswordHash(u.Password, User.Password) {
-		return c.JSON(http.StatusUnauthorized, "Unauthorized")
+		return c.JSON(http.StatusUnauthorized, utils.Unauthorized())
 	}
 
 	sess, _ := session.Get("Session", c)
@@ -47,7 +47,7 @@ func (handler *Handler) Login(c echo.Context) error {
 		MaxAge:   86400 * 7,
 		HttpOnly: true,
 		// Secure:   true,
-		// SameSite: http.SameSiteLaxMode,
+		SameSite: http.SameSiteLaxMode,
 	}
 
 	sess.Values["user"] = User.StudentID
@@ -56,7 +56,7 @@ func (handler *Handler) Login(c echo.Context) error {
 	err := sess.Save(c.Request(), c.Response())
 
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, "Cannot logged you in")
+		return c.JSON(http.StatusInternalServerError, utils.NewError(err))
 	}
 
 	return c.JSON(http.StatusOK, User)
@@ -69,10 +69,10 @@ func (handler *Handler) Logout(c echo.Context) error {
 
 	err := sess.Save(c.Request(), c.Response())
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, "Cannot logged you out")
+		return c.JSON(http.StatusInternalServerError, utils.NewError(err))
 	}
 
-	return c.JSON(http.StatusOK, "Logged out")
+	return c.JSON(http.StatusOK, "Logged Out")
 }
 
 // Register handles account setup
@@ -85,13 +85,13 @@ func (handler *Handler) Register(c echo.Context) error {
 	User := &models.User{}
 
 	if handler.DB.Where(&models.User{StudentID: u.StudentID}).First(User).RecordNotFound() {
-		return c.JSON(http.StatusUnauthorized, "Unauthorized")
+		return c.JSON(http.StatusUnauthorized, utils.Unauthorized())
 	}
 
 	hashedPassword, err := utils.HashPassword(u.Password)
 
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, "Cannot hash password")
+		return c.JSON(http.StatusInternalServerError, utils.NewError(err))
 	}
 
 	User.Password = hashedPassword

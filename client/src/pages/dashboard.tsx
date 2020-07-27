@@ -7,6 +7,12 @@ export default () => {
   const { user, loading, loggedOut, mutate } = useUser()
 
   useEffect(() => {
+    if (user?.ClubID) {
+      Router.replace('/done')
+    }
+  }, [user])
+
+  useEffect(() => {
     if (loggedOut) {
       Router.replace('/')
     }

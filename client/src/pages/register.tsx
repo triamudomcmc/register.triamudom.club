@@ -70,7 +70,7 @@ const RegisterForm = ({ setError, error, setStatus }) => (
       handleSubmit,
       isSubmitting,
     }) => (
-      <form onSubmit={handleSubmit} className="mt-4 w-64">
+      <form onSubmit={handleSubmit} className="mt-4">
         <div>
           <label
             htmlFor="firstName"

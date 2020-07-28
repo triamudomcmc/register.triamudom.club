@@ -27,7 +27,7 @@ func New() (*echo.Echo, *gorm.DB) {
 	gob.Register(time.Time{})
 	e := echo.New()
 
-	dbURI := "root:***REMOVED***@tcp(127.0.0.1:3306)/crn?charset=utf8mb4&parseTime=True&loc=Local"
+	dbURI := "root:password@tcp(127.0.0.1:3306)/crn?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open("mysql", dbURI)
 	log.Printf("Connecting to database...")
 	if err != nil {

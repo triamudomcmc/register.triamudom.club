@@ -8,7 +8,7 @@ import Router from 'next/router'
 import useUser from 'components/useUser'
 import { AuthLayout } from 'components/AuthLayout'
 
-export default () => {
+const Index = () => {
   const { user, mutate } = useUser()
   const [error, setError] = useState('')
 
@@ -128,3 +128,5 @@ export default () => {
     </AuthLayout>
   )
 }
+
+export default Index

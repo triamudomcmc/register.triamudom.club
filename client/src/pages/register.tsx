@@ -260,7 +260,7 @@ const RegisterForm = ({ setError, error, setStatus }) => (
   </Formik>
 )
 
-export default () => {
+const Register = () => {
   const { user } = useUser()
   const [error, setError] = useState('')
   const [status, setStatus] = useState('')
@@ -290,3 +290,5 @@ export default () => {
     </AuthLayout>
   )
 }
+
+export default Register

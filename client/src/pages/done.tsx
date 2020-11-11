@@ -5,7 +5,7 @@ import useUser from 'components/useUser'
 import { Card } from 'components/Card'
 import { fetcherWithToken } from 'libs/fetch'
 
-export default () => {
+const Done = () => {
   const { user, loggedOut, mutate } = useUser()
 
   useEffect(() => {
@@ -63,3 +63,5 @@ export default () => {
     </div>
   )
 }
+
+export default Done

@@ -40,7 +40,7 @@ const RegisterForm = ({ setError, error, setStatus }) => (
       setSubmitting(true)
 
       try {
-        const res = await fetch(`http://localhost:1323/register`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

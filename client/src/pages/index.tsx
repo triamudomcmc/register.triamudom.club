@@ -33,14 +33,17 @@ const Index = () => {
           actions.setSubmitting(true)
 
           try {
-            const res = await fetch(`http://localhost:1323/login`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(values),
-              credentials: 'include',
-            })
+            const res = await fetch(
+              `${process.env.NEXT_PUBLIC_API_URL}/login`,
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+                credentials: 'include',
+              }
+            )
 
             data = await res.json()
 

@@ -86,7 +86,7 @@ const RegisterForm = ({ setError, error, setStatus }) => (
               onBlur={handleBlur}
               value={values.firstName}
               required
-              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+              className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
             />
           </div>
           <p className="my-2 text-sm text-red-500">
@@ -109,7 +109,7 @@ const RegisterForm = ({ setError, error, setStatus }) => (
               onBlur={handleBlur}
               value={values.lastName}
               required
-              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+              className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
             />
           </div>
           <p className="my-2 text-sm text-red-500">
@@ -132,7 +132,7 @@ const RegisterForm = ({ setError, error, setStatus }) => (
               onBlur={handleBlur}
               value={values.studentID}
               required
-              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+              className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
             />
           </div>
           <p className="my-2 text-sm text-red-500">
@@ -188,7 +188,7 @@ const RegisterForm = ({ setError, error, setStatus }) => (
               onBlur={handleBlur}
               value={values.room}
               required
-              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+              className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
             />
           </div>
           <p className="my-2 text-sm text-red-500">
@@ -211,7 +211,7 @@ const RegisterForm = ({ setError, error, setStatus }) => (
               onBlur={handleBlur}
               value={values.number}
               required
-              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+              className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
             />
           </div>
           <p className="my-2 text-sm text-red-500">
@@ -234,20 +234,19 @@ const RegisterForm = ({ setError, error, setStatus }) => (
               onBlur={handleBlur}
               value={values.password}
               required
-              className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+              className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
             />
           </div>
           <p className="my-2 text-sm text-red-500">
             {errors.password && touched.password && errors.password}
           </p>
         </div>
-
         <p className="mt-2 text-sm text-red-500">{error}</p>
         <div className="mt-6 flex flex-row justify-between items-baseline">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="focus:outline-none focus:shadow-outline-pink font-bold bg-pink-500 hover:bg-pink-400 transition duration-500 text-white py-2 px-4 rounded-full"
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
           >
             ลงทะเบียน
           </button>
@@ -278,7 +277,7 @@ const Register = () => {
           <p>นักเรียนได้ทำการยืนยันและตั้งรหัสผ่านในระบบลงทะเบียนชมรมแล้ว</p>
           <div className="mt-8">
             <Link href="/">
-              <a className="focus:outline-none focus:shadow-outline font-bold bg-pink-400 hover:bg-pink-500 transition duration-500 text-white py-2 px-4 rounded-full">
+              <a className="focus:outline-none focus:ring font-bold bg-pink-400 hover:bg-pink-500 transition duration-500 text-white py-2 px-4 rounded-full">
                 เข้าสู่ระบบ
               </a>
             </Link>

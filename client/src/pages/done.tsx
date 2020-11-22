@@ -26,7 +26,7 @@ const Done = () => {
               {user?.FirstName} {user?.LastName} ห้อง {user?.Room}
             </p>
             <p>ได้ลงทะเบียนเรียนกิจกรรมชมรมในปีการศึกษา 2563 แล้ว คือ</p>
-            <p className="my-4 font-semibold text-2xl">
+            <p className="my-4 font-bold text-2xl">
               ชมรมคอมพิวเตอร์ ({user?.ClubID})
             </p>
             <p>กรุณาถ่ายภาพหน้าจอเพื่อเก็บไว้เป็นหลักฐาน</p>
@@ -37,7 +37,7 @@ const Done = () => {
           <span className="inline-flex rounded-md shadow-sm">
             <button
               type="button"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-pink-500 hover:bg-pink-400 focus:outline-none focus:border-pink-700 focus:shadow-outline-pink active:bg-pink-700 transition ease-in-out duration-150"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
               onClick={async () => {
                 try {
                   await fetcherWithToken(

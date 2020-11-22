@@ -65,7 +65,7 @@ const Index = () => {
           handleSubmit,
           isSubmitting,
         }) => (
-          <form onSubmit={handleSubmit} className="mt-4">
+          <form onSubmit={handleSubmit} className="mt-4 space-y-6">
             <div>
               <label
                 htmlFor="student_id"
@@ -81,7 +81,7 @@ const Index = () => {
                   onBlur={handleBlur}
                   value={values.student_id}
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                  className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
               <p className="my-2 text-sm text-red-500">
@@ -104,7 +104,7 @@ const Index = () => {
                   onBlur={handleBlur}
                   value={values.password}
                   required
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                  className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
               <p className="my-2 text-sm text-red-500">
@@ -117,7 +117,7 @@ const Index = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="focus:outline-none focus:shadow-outline-pink font-bold bg-pink-500 hover:bg-pink-400 transition duration-500 text-white py-2 px-4 rounded-full"
+                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
               >
                 เข้าสู่ระบบ
               </button>

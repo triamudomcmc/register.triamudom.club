@@ -26,7 +26,8 @@ module.exports = {
   variants: {},
   plugins: [
     require('@tailwindcss/typography'),
-    require('@tailwindcss/ui'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
     function ({ addBase, addComponents, theme }) {
       addBase([
         {

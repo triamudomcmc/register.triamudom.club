@@ -115,7 +115,7 @@ const Index = () => {
             </div>
 
             <p className="mt-2 text-sm text-red-500">{error}</p>
-            <div className="mt-6 flex flex-row justify-between items-baseline">
+            <div className="flex flex-row items-baseline justify-between mt-6">
               <Button type="submit" disabled={isSubmitting}>
                 เข้าสู่ระบบ
               </Button>

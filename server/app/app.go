@@ -8,6 +8,8 @@ import (
 	_ "github.com/gomodule/redigo/redis"
 	"github.com/gorilla/sessions"
 	"github.com/iammarkps/clubreg/server/handler"
+
+	"github.com/iammarkps/clubreg/server/middlewares"
 	"github.com/iammarkps/clubreg/server/models"
 	"github.com/jinzhu/gorm"
 
@@ -55,6 +57,7 @@ func New() (*echo.Echo, *gorm.DB) {
 	e.Debug = true
 
 	h := &handler.Handler{DB: db}
+	m := &middlewares.Middleware{DB: db}
 
 	e.GET("/", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, "😼Triam Udom Suksa School's club registration API is running!")
@@ -63,7 +66,7 @@ func New() (*echo.Echo, *gorm.DB) {
 	e.POST("/register", h.Register)
 	e.GET("/logout", h.Logout)
 	e.GET("/health", h.HealthCheck)
-	e.GET("/user", h.User)
+	e.GET("/user", h.User, m.Auth(1))
 
 	return e, db
 }

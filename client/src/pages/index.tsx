@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
+import Link from 'components/ui/Link'
 
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Router from 'next/router'
 
-import useUser from 'components/useUser'
-import { AuthLayout } from 'components/AuthLayout'
+import useUser from 'components/auth/useUser'
+import { AuthLayout } from 'components/auth/AuthLayout'
+import Button from 'components/ui/Button'
+import Input from 'components/ui/Input'
 
 const Index = () => {
   const { user, mutate } = useUser()
@@ -69,19 +71,19 @@ const Index = () => {
             <div>
               <label
                 htmlFor="student_id"
-                className="block text-sm font-medium leading-5 text-gray-700"
+                className="block text-sm font-medium text-gray-700"
               >
                 เลขประจำตัวนักเรียน
               </label>
-              <div className="mt-1 rounded-md shadow-sm">
-                <input
+              <div className="mt-1">
+                <Input
+                  id="student_id"
                   type="text"
                   name="student_id"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.student_id}
                   required
-                  className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
               <p className="my-2 text-sm text-red-500">
@@ -89,22 +91,22 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="mt-2">
+            <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium leading-5 text-gray-700"
+                className="block text-sm font-medium text-gray-700"
               >
                 รหัสผ่าน
               </label>
-              <div className="mt-1 rounded-md shadow-sm">
-                <input
+              <div className="mt-1">
+                <Input
+                  id="password"
                   type="password"
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
                   required
-                  className="shadow-sm focus:ring-pink-500 focus:border-pink-500 block w-full sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
               <p className="my-2 text-sm text-red-500">
@@ -114,13 +116,9 @@ const Index = () => {
 
             <p className="mt-2 text-sm text-red-500">{error}</p>
             <div className="mt-6 flex flex-row justify-between items-baseline">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-              >
+              <Button type="submit" disabled={isSubmitting}>
                 เข้าสู่ระบบ
-              </button>
+              </Button>
               <Link href="/register">
                 <a className="text-gray-600">ตั้งรหัสผ่าน</a>
               </Link>

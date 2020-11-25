@@ -1,0 +1,7 @@
+.root {
+  @apply block w-full border-gray-300 rounded-md shadow-sm sm:text-sm;
+}
+
+.root:focus {
+  @apply border-pink-500 ring-pink-500;
+}

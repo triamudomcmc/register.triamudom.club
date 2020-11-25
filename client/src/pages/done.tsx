@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import Router from 'next/router'
 
-import useUser from 'components/useUser'
-import { Card } from 'components/Card'
+import useUser from 'components/auth/useUser'
+import Card from 'components/ui/Card'
 import { fetcherWithToken } from 'libs/fetch'
+import Button from 'components/ui/Button'
 
 const Done = () => {
   const { user, loggedOut, mutate } = useUser()
@@ -34,31 +35,28 @@ const Done = () => {
           </div>
         </Card>
         <div className="mt-4 text-right">
-          <span className="inline-flex rounded-md shadow-sm">
-            <button
-              type="button"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-              onClick={async () => {
-                try {
-                  await fetcherWithToken(
-                    `${process.env.NEXT_PUBLIC_API_URL}/logout`,
-                    {
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                    }
-                  )
-                } catch (_) {
-                  window.location.reload()
-                }
+          <Button
+            type="button"
+            onClick={async () => {
+              try {
+                await fetcherWithToken(
+                  `${process.env.NEXT_PUBLIC_API_URL}/logout`,
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  }
+                )
+              } catch (_) {
+                window.location.reload()
+              }
 
-                mutate(null)
-                Router.replace('/')
-              }}
-            >
-              ออกจากระบบ
-            </button>
-          </span>
+              mutate(null)
+              Router.replace('/')
+            }}
+          >
+            ออกจากระบบ
+          </Button>
         </div>
       </div>
     </div>

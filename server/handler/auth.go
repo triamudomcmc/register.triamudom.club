@@ -25,6 +25,7 @@ type (
 		Room      string `json:"room"`
 		Number    string `json:"number"`
 		StudentID string `json:"studentID"`
+		TOS       bool   `json:"tos"`
 	}
 )
 
@@ -95,6 +96,7 @@ func (handler *Handler) Register(c echo.Context) error {
 	}
 
 	User.Password = hashedPassword
+	User.TOS = u.TOS
 
 	handler.DB.Save(User)
 

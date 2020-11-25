@@ -11,20 +11,25 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^0.2.0",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.0.2",
+    "classnames": "^2.2.6",
     "formik": "^2.1.4",
     "next": "^10.0.1",
     "postcss": "^8.1.9",
     "react": "^17.0.1",
+    "react-aria": "^3.1.1",
     "react-dom": "^17.0.1",
+    "react-merge-refs": "^1.1.0",
     "swr": "^0.3.8",
     "tailwindcss": "^2.0.1",
     "yup": "^0.29.1"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.11",
     "@types/node": "^14.0.13",
     "@types/react": "^16.9.38",
     "typescript": "^3.9.5"

@@ -18,6 +18,7 @@ type User struct {
 	ClubID      string
 	Reason      string
 	OldClubID   string
+	TOS         bool
 	UpdatedAt   time.Time `json:"-"`
 	CreatedAt   time.Time `json:"-"`
 }

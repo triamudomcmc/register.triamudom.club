@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import Router from 'next/router'
 import useUser from 'components/auth/useUser'
+import Head from 'next/head'
 
 const Dashboard = () => {
-  const { user, loading, loggedOut, mutate } = useUser()
+  const { user, loggedOut } = useUser()
 
   useEffect(() => {
-    console.log(user)
     if (user?.ClubID) {
       Router.replace('/done')
     }
@@ -21,9 +21,22 @@ const Dashboard = () => {
   if (loggedOut) return 'Redirecting...'
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      Dashboard
-    </div>
+    <>
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (!document.cookie || document.cookie.indexOf('auth') === -1) {
+                location.replace('/')
+              }
+            `,
+          }}
+        />
+      </Head>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+        Dashboard
+      </div>
+    </>
   )
 }
 

@@ -11,10 +11,11 @@ export const logout = async (mutate: (data?: any, shouldRevalidate?: boolean) =>
           },
         }
       )
+
+      Router.replace('/')
     } catch (_) {
       window.location.reload()
     }
 
     mutate(null)
-    Router.replace('/')
 }

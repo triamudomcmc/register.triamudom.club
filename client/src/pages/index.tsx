@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'components/ui/Link'
 import Head from 'next/head'
 
@@ -11,18 +11,9 @@ import { AuthLayout } from 'components/auth/AuthLayout'
 import Button from 'components/ui/Button'
 import Input from 'components/ui/Input'
 
-/**
- * @todo Fix double-redirect when logged out
- */
 const Index = () => {
-  const { user, mutate } = useUser()
+  const { mutate } = useUser()
   const [error, setError] = useState('')
-
-  useEffect(() => {
-    if (user) {
-      Router.replace('/dashboard')
-    }
-  }, [user])
 
   return (
     <>
@@ -65,10 +56,10 @@ const Index = () => {
 
               data = await res.json()
 
-              console.log(res)
-
               if (res.status === 401) {
                 setError('ชื่อผู้ใช้หรือรหัสผ่านผิด')
+              } else if (res.status === 200) {
+                Router.push('/dashboard')
               }
             } catch (_) {}
 

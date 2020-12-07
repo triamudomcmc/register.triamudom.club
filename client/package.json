@@ -27,7 +27,7 @@
     "react-merge-refs": "^1.1.0",
     "swr": "^0.3.8",
     "tailwindcss": "^2.0.1",
-    "yup": "^0.29.1"
+    "yup": "^0.32.5"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
